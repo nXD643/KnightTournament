@@ -14,6 +14,18 @@ config/name="KnightTorunament"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Assets/2Dmedia/": "yellow",
+"res://Assets/2Dmedia/Colour1/": "green",
+"res://Assets/2Dmedia/Colour2/": "teal",
+"res://Assets/Scripts/": "blue",
+"res://Assets/Soundmedia/": "purple",
+"res://Scenes/": "orange"
+}
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
