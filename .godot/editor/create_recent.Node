@@ -1,2 +1,9 @@
+AnimationTree
+AnimationPlayer
+Timer
+AnimatedSprite2D
+CollisionShape2D
+StaticBody2D
+Camera2D
 Sprite2D
 CharacterBody2D
