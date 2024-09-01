@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://uq2en1fu52ax"]
+[gd_scene load_steps=42 format=3 uid="uid://uq2en1fu52ax"]
 
 [ext_resource type="Script" path="res://Scenes/character_body_2d.gd" id="1_5n1b8"]
 [ext_resource type="Texture2D" uid="uid://b5dxqxevk5fud" path="res://Assets/2Dmedia/Colour1/Outline/120x80_PNGSheets/_Fall.png" id="2_vb2j8"]
@@ -235,6 +235,46 @@ animations = [{
 radius = 7.5
 height = 38.0
 
+[sub_resource type="Animation" id="Animation_oabl2"]
+resource_name = "Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"JumpFall"]
+}
+
+[sub_resource type="Animation" id="Animation_d1x30"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+
+[sub_resource type="Animation" id="Animation_kdqpc"]
+resource_name = "Walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_le7lj"]
+_data = {
+"Idle": SubResource("Animation_d1x30"),
+"Jump": SubResource("Animation_oabl2"),
+"Walk": SubResource("Animation_kdqpc")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wx435"]
 size = Vector2(117, 53.5)
 
@@ -248,15 +288,19 @@ script = ExtResource("1_5n1b8")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 position = Vector2(2.75, -40)
 sprite_frames = SubResource("SpriteFrames_xt5wj")
-animation = &"JumpFall"
-autoplay = "Idle"
-frame_progress = 0.546407
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-2.5, -19)
 shape = SubResource("CapsuleShape2D_0m2ip")
 
-[node name="Fall" type="Timer" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+libraries = {
+"": SubResource("AnimationLibrary_le7lj")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D"]
+anim_player = NodePath("../AnimationPlayer")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0.75, 60.75)
