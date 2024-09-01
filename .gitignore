@@ -1,0 +1,16 @@
+# Ignorar archivos y carpetas de Godot
+.import/
+export.cfg
+*.import
+*.godot/*.import
+*.godot/*.godot
+
+# Ignorar archivos temporales
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
